@@ -5,7 +5,7 @@
 ## 1. 代码与数据彻底分家（核心铁律）
 
 - **本仓库只放纯代码与规则**：仅包含 `SKILL.md`、确定性脚本、配置示例（无真实值）和轻量自动测试，整仓体积保持在 MB 级。
-- **数据统一放仓库外**：本机配置、密钥、本地大模型、门店词表、参考样片及运行产物统一存放在 `/Users/wmy/Documents/ChatGPT/StudioData/`（跨机器可通过参数 `--config` 或环境变量 `STUDIO_DATA_DIR` 指定），严禁在本仓库内新建 `local/`、`outputs/`、`work/` 等数据目录。
+- **数据统一放仓库外**：本机配置、密钥、本地大模型、门店词表、参考样片及运行产物统一存放在 `~/Documents/ChatGPT/StudioData/`（Windows 为 `%USERPROFILE%\Documents\ChatGPT\StudioData\`，跨机器可通过参数 `--config` 或环境变量 `STUDIO_DATA_DIR` 指定），严禁在本仓库内新建 `local/`、`outputs/`、`work/` 等数据目录。
 
 ## 2. 技能包结构与版本规范
 
