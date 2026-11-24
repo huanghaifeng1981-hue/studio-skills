@@ -55,7 +55,7 @@ python3 scripts/install.py --apply
 
 每次挑 1 个技能，对助手说“把旧仓的 `<技能名>` 审核整理后迁入 `studio-skills`”，按以下四步闭环：
 
-1. **剥离硬编码与数据**：把包内残留的本机路径、配置移到 `../StudioData/config/`，代码里统一通过参数或环境变量读取。
+1. **规范命名与剥离数据**：所有自建技能英文 ID 统一以 `studio-` 开头（旧仓未带前缀的技能迁入时统一补齐，并同步更新关联调用名）；把包内残留的本机路径、配置移到 `../StudioData/config/`，代码里统一通过参数或环境变量读取。
 2. **精简文档结构**：对照 `templates/skill/SKILL.md` 理顺说明，标清支持平台与真实已验证边界，版本从新起点或延续原版标清，建立包内 `CHANGELOG.md`。
 3. **跑通验证**：补齐或运行该技能测试及仓库 `python3 -m unittest discover -s tests -p 'test_*.py'`。
 4. **登记入库**：更新本页「技能目录」表格与仓库 `CHANGELOG.md`，检查 `git status` 无任何敏感文件后提交。

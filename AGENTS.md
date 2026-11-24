@@ -9,7 +9,7 @@
 
 ## 2. 技能包结构与版本规范
 
-- **命名与路径**：位于 `skills/<skill-id>/`，ID 使用小写英文、数字和短横线，与 `SKILL.md` 的 `name` 字段完全一致。从 [技能模板](templates/skill/SKILL.md) 起步。
+- **命名与路径**：本仓库开发的所有技能 ID 统一以 `studio-` 为前缀（例如 `studio-photo-selection`），便于在助手技能列表中一眼区分自建技能与第三方技能。路径位于 `skills/studio-<name>/`，仅使用小写英文、数字和短横线，目录名须与 `SKILL.md` 的 `name` 字段完全一致。从 [技能模板](templates/skill/SKILL.md) 起步。
 - **版本号与状态**：在 `SKILL.md` 的 `metadata` 中维护：
   - `version`：`两位年.月.当月序号`（如 `26.11.1`，换月从 1 起，各技能独立计数）。
   - `status`：新迁入或试运行标 `draft`；经真实样本验收且用户明确批准后标 `active`。

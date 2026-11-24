@@ -1,5 +1,5 @@
 ---
-name: replace-with-skill-id
+name: studio-replace-with-name
 description: 一句话写清解决什么问题、在什么触发场景下调用。
 metadata:
   version: "26.11.1"
