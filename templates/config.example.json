@@ -1,0 +1,7 @@
+{
+  "_comment": "技能运行路径与业务配置示例。实际文件保存在 ~/Documents/ChatGPT/StudioData/config/ 下，通过 --config 传入。",
+  "studio_data_dir": "/Users/replace-me/Documents/ChatGPT/StudioData",
+  "models_dir": "/Users/replace-me/Documents/ChatGPT/StudioData/models",
+  "references_dir": "/Users/replace-me/Documents/ChatGPT/StudioData/references",
+  "outputs_dir": "/Users/replace-me/Documents/ChatGPT/StudioData/outputs"
+}

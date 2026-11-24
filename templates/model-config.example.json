@@ -1,0 +1,10 @@
+{
+  "_comment": "模型配置示例。实际文件保存在 StudioData/config/ 下，不提交到 Git。",
+  "provider": "ollama | openai | anthropic | google | other",
+  "endpoint": "http://127.0.0.1:11434/api 或线上 API 地址",
+  "model": "模型名称",
+  "auth_env_var": "读取密钥的环境变量名，如 OPENAI_API_KEY（本地无鉴权留空）",
+  "timeout_seconds": 120,
+  "capabilities": ["text", "vision", "structured_output"],
+  "data_scope": "仅本地允许素材 / 已获授权外发素材"
+}

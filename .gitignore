@@ -1,0 +1,36 @@
+# 系统与运行缓存
+.DS_Store
+.obsidian/
+.vscode/
+.idea/
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+node_modules/
+*.log
+*.sqlite3
+*.bak*
+
+# 敏感配置与密钥（严禁入库）
+.env
+.env.*
+!.env.example
+*config.local*
+
+# 数据与产物分家保护（统一存放在仓库外的 StudioData/，严禁混入代码仓）
+local/
+outputs/
+work/
+StudioData/
+
+# 大体积媒体与原始业务素材防护（特殊极小测试固件需显式强制添加）
+*.mp4
+*.mov
+*.m4a
+*.wav
+*.arw
+*.cr2
+*.cr3
+*.nef
+*.dng
