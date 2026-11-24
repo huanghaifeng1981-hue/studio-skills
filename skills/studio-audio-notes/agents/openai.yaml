@@ -1,0 +1,4 @@
+interface:
+  display_name: "Studio-Audio-Notes26.11.15"
+  short_description: "整理会议、选片沟通和培训录音"
+  default_prompt: "使用 $studio-audio-notes 整理指定录音，按会议、选片沟通或培训场景生成所需记录。"

@@ -2,6 +2,16 @@
 
 > 本文件仅记录仓库架构变更及各技能迁入、正式启用（`active`）等重要节点；各技能内部的日常细节迭代记录在 `skills/<skill-id>/CHANGELOG.md`。
 
+## 2026-11-24 · 完成全部 7 个核心 `studio-*` 技能清洗入库
+
+- **外部大体积资产归位**：将 4.1 GB 本地模型、词表、局域网 Ollama 配置及米乐转档参考样片库统一移至仓库外 `StudioData/`，实现代码仓零数据负担。
+- **逐一清洗并迁入剩余 5 个技能**：
+  - `studio-photo-selection@26.11.7`（`active`）：清理失效的上古项目指纹锁与重复说明，保留 28 项测试与眼神复核/儿童构成规则。
+  - `studio-jianying-bts-editor@26.11.9`（原 `jianying-bts-editor`，`active`）：补齐 `studio-` 前缀，彻底铲除失效的上古跨目录 Python 僵尸脚本，保留 7 个 `.mjs` 界面状态机与 6 份测试。
+  - `studio-checkin-video@26.11.28`（`active`）：更新下游技能 `studio-*` 新引用名，工作目录收敛至 `StudioData/outputs/`，补齐 `day_queue.py` 单元测试与故障速查卡。
+  - `studio-audio-notes@26.11.16`（`draft`）：清理 `customer-audio-notes` 旧路径残留，对齐 `StudioData/` 模型与词表位置，新增纠错日志测试。
+  - `studio-capture-one-raw-convert@26.11.14`（`draft`）：关联 `StudioData/` 参考样片库配置，新增 `preview-metrics.py` 亮度分位单元测试。
+
 ## 2026-11-24 · 迁入照片文件夹查找技能
 
 - 审核清洗并迁入第 2 个技能 `studio-photo-folder-match@26.11.3`（原 `photo-folder-match`，`active`）：补齐 `studio-` 前缀，剥离私人 NAS 地址至外部 `StudioData/config/`，修复脚本 UTF-8 跨平台读写与正斜杠相对路径，并补齐自动化单元测试。

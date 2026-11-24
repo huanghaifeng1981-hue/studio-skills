@@ -1,0 +1,4 @@
+interface:
+  display_name: "剪映花絮模板自动制作"
+  short_description: "按已有剪映母版或收藏模板批量替换照片并导出卡点短视频"
+  default_prompt: "使用 $studio-jianying-bts-editor 按指定母版或收藏模板替换照片并导出 1080p 30fps MP4。"
