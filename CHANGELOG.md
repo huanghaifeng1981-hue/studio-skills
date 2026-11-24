@@ -2,6 +2,10 @@
 
 > 本文件仅记录仓库架构变更及各技能迁入、正式启用（`active`）等重要节点；各技能内部的日常细节迭代记录在 `skills/<skill-id>/CHANGELOG.md`。
 
+## 2026-11-24 · 迁入照片文件夹查找技能
+
+- 审核清洗并迁入第 2 个技能 `studio-photo-folder-match@26.11.3`（原 `photo-folder-match`，`active`）：补齐 `studio-` 前缀，剥离私人 NAS 地址至外部 `StudioData/config/`，修复脚本 UTF-8 跨平台读写与正斜杠相对路径，并补齐自动化单元测试。
+
 ## 2026-11-24 · 迁入飞书知识库同步技能
 
 - 审核清洗并迁入第 1 个技能 `studio-feishu-wiki-sync@26.11.5`（`active`）：串联包内 `lark-cli` 参考手册、移除旧文件命名假设、补齐本地相对链接与 `feishu_url` 双向转换及回读验收规则。

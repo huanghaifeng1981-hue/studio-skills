@@ -7,6 +7,7 @@
 | Skill (英文 ID) | 中文名称 | 版本 | 状态 | 用途说明 |
 |---|---|---|---|---|
 | [studio-feishu-wiki-sync](skills/studio-feishu-wiki-sync/SKILL.md) | 飞书知识库同步 | 26.11.5 | active | 按口令双向同步本地 Markdown 与飞书知识库（含链接互转与回读核验） |
+| [studio-photo-folder-match](skills/studio-photo-folder-match/SKILL.md) | 照片文件夹查找 | 26.11.3 | active | 根据选片表/摄影表匹配客人底片目录，支持精确姓名断点安全复制 |
 
 ## 目录结构（代码仓 vs 数据目录）
 
