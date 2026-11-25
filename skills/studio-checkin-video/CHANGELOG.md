@@ -1,5 +1,9 @@
 # studio-checkin-video 更新记录
 
+## 26.11.29（2026-11-25 · 将验收后清理纳入交付）
+
+- 记录已获授权的逐单清理流程，先确认 NAS 与总表，再清理草稿和临时素材。合单共用副本只清理一次，核实后推进队列。
+
 ## 26.11.28（2026-11-24 · 清洗迁入 studio-skills 新仓）
 
 - 迁入 `studio-skills` V2 仓库，将下游协同技能标识统一更新为 `studio-photo-folder-match`、`studio-photo-selection`、`studio-jianying-bts-editor`。
