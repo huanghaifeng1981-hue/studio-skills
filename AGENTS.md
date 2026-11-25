@@ -25,7 +25,7 @@
 ## 4. 跨平台与协作纪律
 
 - **双平台目标**：通用逻辑兼顾 macOS 与 Windows；依赖专用软件或系统接口（如 AppleScript、Capture One、剪映界面控制）时，在 `SKILL.md` 明确标注当前已验证平台与未覆盖边界，未实测不宣称兼容。
-- **一机开发、多机只读**：固定在主力开发机修改并推送到 GitHub；其他工作电脑仅通过 `git pull --ff-only` 与 `scripts/install.py` 只读拉取安装，不在运行目录直接改技能源码。
+- **多机可修、只改仓内**：维护者可在任意电脑排障迭代，固定遵循「`git pull --ff-only` → 在本仓库内修改并递增 `version`、跑通测试 → `python3 scripts/install.py --apply` 安装到本机实测 → 确认无误后 `git commit` 与 `git push`」，严禁直接修改 `~/.codex/skills` 等安装目录副本；纯使用者的电脑仅执行 `git pull --ff-only && python3 scripts/install.py --apply` 只读更新。
 - **授权克制**：明确任务范围内连续执行；涉及对外发送、覆盖业务原件、删除或范围不明时，先向用户确认。
 
 ## 5. 跨项目协同（工具共用，数据各回各家）

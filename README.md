@@ -50,12 +50,19 @@ python3 scripts/install.py --skill studio-feishu-wiki-sync --apply
 python3 scripts/install.py --target ~/.gemini/config/skills --apply
 ```
 
-其他电脑只读获取更新（不在运行机直接改技能源码，彻底杜绝冲突）：
+多机同步与现场排障流程：
 
-```sh
-git pull --ff-only
-python3 scripts/install.py --apply
-```
+- **日常获取更新（其他电脑或同事只读使用）**：拉取后立即安装，确保本机运行副本与仓库版本一致：
+
+  ```sh
+  git pull --ff-only && python3 scripts/install.py --apply
+  ```
+
+- **现场排障修改（任意机器均可迭代，严禁直接改 `~/.codex/skills` 安装副本）**：
+  1. `git pull --ff-only` 先对齐远端最新代码；
+  2. 在本仓库 `skills/` 内修改、递增 `version` 并跑通测试；
+  3. `python3 scripts/install.py --apply` 安装到本机实测跑通业务；
+  4. 确认彻底修复后执行 `git commit` 与 `git push` 回传 GitHub。
 
 ## 从旧仓迁入技能的四步标准动作
 
