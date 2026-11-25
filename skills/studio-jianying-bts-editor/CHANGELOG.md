@@ -1,5 +1,9 @@
 # studio-jianying-bts-editor 更新记录
 
+## 26.11.10（2026-11-25 · 补充导出成功页的取消入口）
+
+- 新增「发布」旁边灰色「取消」的关闭路径，确认回到编辑窗口后继续批次。移除覆盖弹窗的回车操作与导出成功页的固定坐标提示。
+
 ## 26.11.9（2026-11-24 · 统一命名、清理死代码并迁入 studio-skills 新仓）
 
 - 技能 ID 由 `jianying-bts-editor` 统一更名为 `studio-jianying-bts-editor`，同步更新 `SKILL.md` 与 `agents/openai.yaml` 调用标识。

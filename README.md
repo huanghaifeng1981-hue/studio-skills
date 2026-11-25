@@ -9,7 +9,7 @@
 | [studio-feishu-wiki-sync](skills/studio-feishu-wiki-sync/SKILL.md) | 飞书知识库同步 | 26.11.5 | active | 按口令双向同步本地 Markdown 与飞书知识库（含链接互转与回读核验） |
 | [studio-photo-folder-match](skills/studio-photo-folder-match/SKILL.md) | 照片文件夹查找 | 26.11.3 | active | 根据选片表/摄影表匹配客人底片目录，支持精确姓名断点安全复制 |
 | [studio-photo-selection](skills/studio-photo-selection/SKILL.md) | 照片优选 | 26.11.7 | active | 按张数与构图挑选好照片，支持全员眼神放大复核、近似去重与儿童打卡构成 |
-| [studio-jianying-bts-editor](skills/studio-jianying-bts-editor/SKILL.md) | 剪映花絮模板自动制作 | 26.11.9 | active | 按已有剪映母版或收藏模板批量替换照片、导出 1080p 30fps 短视频并清理副本 |
+| [studio-jianying-bts-editor](skills/studio-jianying-bts-editor/SKILL.md) | 剪映花絮模板自动制作 | 26.11.10 | active | 按已有剪映母版或收藏模板批量替换照片、导出 1080p 30fps 短视频并清理副本 |
 | [studio-checkin-video](skills/studio-checkin-video/SKILL.md) | 选片短视频打卡流程 | 26.11.28 | active | 从 ERP 选片表到底片提取、选片、剪映制片、原 NAS 回存、年度总表与副本清理全流程 |
 | [studio-audio-notes](skills/studio-audio-notes/SKILL.md) | 录音整理助手 | 26.11.16 | draft | 客户选片沟通、经营会议与培训录音离线转写及分场景结构化归档 |
 | [studio-capture-one-raw-convert](skills/studio-capture-one-raw-convert/SKILL.md) | 飞思 AI 转档 | 26.11.14 | draft | 经 AppleScript 对选中 RAW 逐张做脸部基准校正、默认润饰并交接原尺寸高质量 JPG |
