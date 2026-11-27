@@ -2,6 +2,10 @@
 
 > 本文件仅记录仓库架构变更及各技能迁入、正式启用（`active`）等重要节点；各技能内部的日常细节迭代记录在 `skills/<skill-id>/CHANGELOG.md`。
 
+## 2026-11-27 · 飞思 AI 转档技能完成十一轮审计与实机验收正式启用
+
+- **`studio-capture-one-raw-convert@26.11.28`（`active`）**：完成十一轮高强度白盒安全/崩溃一致性审计（51 项包内自动化回归测试 + 7 项仓库级测试）与 macOS Capture One Pro 16.9 真实客片端到端试跑验收（含 NAS 正式参考库联动、`Studio_Default_Retouch` 自动人像润饰+锐化、AI 面部蒙版分层调参、`--overwrite-own` 无损重导与 `handoff.jsonl` 账本对平），经用户确认正式启用。
+
 ## 2026-11-24 · 完成全部 7 个核心 `studio-*` 技能清洗入库
 
 - **外部大体积资产归位**：将 4.1 GB 本地模型、词表、局域网 Ollama 配置及米乐转档参考样片库统一移至仓库外 `StudioData/`，实现代码仓零数据负担。

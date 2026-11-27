@@ -12,7 +12,7 @@
 | [studio-jianying-bts-editor](skills/studio-jianying-bts-editor/SKILL.md) | 剪映花絮模板自动制作 | 26.11.11 | active | 按已有剪映母版或收藏模板批量替换照片、导出 1080p 30fps 短视频并清理副本 |
 | [studio-checkin-video](skills/studio-checkin-video/SKILL.md) | 选片短视频打卡流程 | 26.11.29 | active | 从 ERP 选片表到底片提取、选片、剪映制片、原 NAS 回存、年度总表与副本清理全流程 |
 | [studio-audio-notes](skills/studio-audio-notes/SKILL.md) | 录音整理助手 | 26.11.16 | draft | 客户选片沟通、经营会议与培训录音离线转写及分场景结构化归档 |
-| [studio-capture-one-raw-convert](skills/studio-capture-one-raw-convert/SKILL.md) | 飞思 AI 转档 | 26.11.14 | draft | 经 AppleScript 对选中 RAW 逐张做脸部基准校正、默认润饰并交接原尺寸高质量 JPG |
+| [studio-capture-one-raw-convert](skills/studio-capture-one-raw-convert/SKILL.md) | 飞思 AI 转档 | 26.11.28 | active | 经 AppleScript 对客人 RAW 逐张调色温色调、人物与环境分区曝光、套默认润饰并导出原尺寸 100 质量 JPG |
 
 ## 目录结构（代码仓 vs 数据目录）
 
