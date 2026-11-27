@@ -1,11 +1,22 @@
 # macOS Capture One 操作
 
-## AppleScript 接口与批次
+## AppleScript 接口与确定性桥接脚本
 
-- 用 macOS「脚本编辑器」(Script Editor) 打开 Capture One 的脚本字典。也可从飞思 Scripts → Open Scripting Dictionary 打开字典。正式调用由 `osascript` 直接发给 Capture One。Automator（自动操作）可以启动 AppleScript，但技能运行不依赖 Automator。
-- 在目标机确认 Capture One 版本和 macOS 自动化权限。使用专用集合，核对引用的是原位置 RAW。先按文档、源文件路径和变体 ID 定位。已有编辑时使用字典的 `clone variant`，后续显式指定克隆后的变体。
-- 本机参考字典 16.9.0.10 提供 `adjustments` 下的 `exposure`、`temperature`、`tint`、`highlight adjustment` 和 `shadow recovery`。写入绝对值并读回。基础调整由视觉模型逐张看图决定，不复制参考数值，也不以自动调整替代逐张判断。
-- 导入及导出依赖已验证的设置和配方。接口权限、变体定位或 JPG 导出失败时保留断点并报告失败原因。
+- 正式调用统一通过包内脚本 `scripts/c1_bridge.py` 驱动 `/usr/bin/osascript` 与 Capture One 通信（也可在 macOS「脚本编辑器」或飞思 Scripts → Open Scripting Dictionary 查看字典，不依赖 Automator）。
+- 在目标机确认 Capture One 版本（已核对 `16.9.0.10` `CaptureOne.sdef`）和 macOS 自动化权限。所有修改、正式导出与交接命令均强制绑定批次状态账本 `--batch-state <batch-state.json>`，从代码层阻断误改原始源变体、重复创建克隆变体、前缀错认导出文件及整批漏片。
+- `c1_bridge.py` 核心子命令：
+  - `status [--browse <dir>]`：读取飞思版本、当前文档/集合、配方状态及全部变体清单。
+  - `init-batch --batch-state <path> [--raw-dir <dir>] [--browse] [--selected-ids ...] [--record-missing-selected]`：登记整批期待处理的 RAW 照片与原始 `source_variant_id`，反向逐项核查 `--selected-ids`（同干名不同扩展名如 `A.CR2`、`A.NEF` 自动保留完整文件名入账，绝不漏记；缺失项默认立即报错，或加 `--record-missing-selected` 记为 `missing_source` 保持 `balanced=false`）。
+  - `ensure-recipes`：幂等创建/更新预览配方 `AI_Preview_1536_NoMeta` 与正式交接配方 `AI_Handoff_Full_sRGB100`（`existing files: skip`），设置并强校验读回 `color profile` 必须为 sRGB（不再静默吞错）。
+  - `prepare-variant --batch-state <path> --photo-id <id> [--retouch-style <name> | --retouch-source-variant-id <id>]`：断点重跑时自动复用已登记克隆变体；首次克隆时快照保存客片全部继承局部图层 `inherited_layers`，调用 `maximum crop` 恢复完整画面，优先用 `--retouch-style` 套入纯润饰预设并写回 28 项基础滑杆、`color profile` 与 `film curve`。
+  - `inspect --variant-id <id>`：完整读回全部 28 项全局与图层 `adjustments`、旋转方向 `orientation`、尺寸与裁切框。
+  - `apply --batch-state <path> --variant-id <id> --spec '<JSON>' [--note '...']` / `rollback --batch-state <path> --photo-id <id>`：写前拒绝非有限容差及所有受管层（新建层与已有层）无法通过 AppleScript 独立读回核验的 `feather`/`refine` 蒙版操作；`verify_readback` 绝不跳过 `feather`/`refine`；新建受管层在回滚时直接 `delete` 移除；支持多参数图层半途回滚中断（如 `(1, 20)` 停在 `(0, 20)`）的逐字段二分格续跑与同轮新建多层部分删除后的精确索引下移续跑，同时零写阻断无关移层、同名替代层或未参与字段漂移。
+  - `export --mode preview|handoff --batch-state <path> --variant-id <id> --recipe <name> --output-dir <dir> [--versioned | --overwrite-own]` & `resolve-export-conflict --batch-state <path> --photo-id <id> --resolution keep-external|restore-backup`：通过 `(st_dev, st_ino)` 候选 Inode 集合（`candidate_file_ids`）与原收据 `previous_file_id` 证明文件归属（缺少 Inode 证据的旧版 `pending_export_commit` 加载时一律锁存为冲突待人工处理）；恢复时同时核验正式路径与 `temp_publish_path` 交换临时路径，确认被换下文件属于原收据后才清理，防止 `RENAME_SWAP` 后中断误删被换下的外部文件；完整内容 `SHA-256` 连续性核验覆盖至 `save_batch_ledger` 收据落盘结束（拦截收据写盘期间的等长原地改写）；`restore-backup` 在现场有文件时强制核对原收据 Inode，拒绝将同字节不同 Inode 的外部文件登记为自有。
+  - `record-handoff --batch-state <path> --handoff-file <path> --record '<JSON>'`：变体含未解决失败/中断轮次时严禁登记 `passed`（换目录或后缀亦阻断，须完成经核验的 `rollback` 后方可重新导出交接）；写入 `verified_adjustment_seq` 与 `verified_sha256` 并逐行复核整份 `handoff.jsonl`。
+- **真机待验边界说明**：
+  1. `create people mask ... with separate layers` 在飞思 `16.9.0.10` 字典中按所选身体区域（如 `face skin`、`body skin`、`clothes`）分层，并不按画面中不同人物分别建层；多人合照须用真实样片核查全员覆盖与受光兼顾情况。
+  2. 局部图层的 `temperature` / `tint` 在字典中仅声明为 `real`，未说明局部图层的单位与中性值；真机完成单图正反向渲染验证前，`c1_bridge.py` 默认禁止在 `masks.*` 中写入白平衡参数（仅实验验证时显式传 `--allow-layer-wb`）。
+- 基础调整由视觉模型逐张看图决定，每轮记录目标区域、当前读数、目标绝对值与复查位置，不复制参考数值，也不以自动调整替代逐张判断。
 
 ## 基础调节项
 
